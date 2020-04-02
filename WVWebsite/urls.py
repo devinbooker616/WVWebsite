@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from WVWebsite.app.views import render_page
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("", render_page, name="Home"),
-    url(r'^tinymce/', include('tinymce.urls'))
+    url(r"^tinymce/", include("tinymce.urls")),
 ]
