@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
-def home_page(request):
-    if request.method == "GET":
-        return render(request, "templates/homepage.html")
+
+def render_page(request):
+    return render(request, "home.html")

@@ -1,4 +1,3 @@
 {
-    "python.pythonPath": "C:\\Users\\Irvings\\.virtualenvs\\ascent-WRCea9-W\\Scripts\\python.exe",
-    "python.formatting.provider": "black"
+  "python.pythonPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64\\python.exe"
 }
