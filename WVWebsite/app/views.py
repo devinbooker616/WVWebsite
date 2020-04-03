@@ -3,5 +3,5 @@ from WVWebsite.app.models import Entry
 
 
 def render_page(request):
-    entries = Entry.objects.all()
-    return render(request, "home.html")
+    website = Entry.objects.all()
+    return render(request, "home.html", {"Entries": website})
