@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
 
-class Website(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
+class Entry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     textbox = HTMLField()
+
+    def __str__(self):
+        return self.textbox
