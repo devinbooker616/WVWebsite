@@ -11,24 +11,14 @@
     </script>
 </head>
 
-<<<<<<< HEAD:WVWebsite/app/Templates/index.html
-  <body>
-  {% if  user.is_authenticated %}
-  <form action="{% url 'Home' %}" method="post">
-      <textarea name="text"></textarea>
-=======
 <body>
     <form action="{% url 'Home' %}" method="post">
         <textarea name="text">
         </textarea>
->>>>>>> 6161e2899af3a91a2e59d0c37ec019eae61d61f9:WVWebsite/app/Templates/home.html
     </form>
-  {% else %}
   {% for Entry in Entries %} 
   <h1>{{Entry}}</h1> 
   {% endfor %}
-
-  {% endif %}
     
   </body>
   
