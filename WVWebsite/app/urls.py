@@ -18,5 +18,6 @@ from django.urls import path
 from WVWebsite.app.views import render_page
 
 urlpatterns = [
-    path("", render_page, name="Home")
+    path("", render_page, name="Home"),
+
 ]

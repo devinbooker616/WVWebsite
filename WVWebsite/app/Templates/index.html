@@ -14,11 +14,16 @@
   </head>
 
   <body>
-    <form action="{% url 'Home' %}" method="post">
+  {% if  user.is_authenticated %}
+  <form action="{% url 'Home' %}" method="post">
       <textarea name="text"></textarea>
     </form>
-  </body>
+  {% else %}
   {% for Entry in Entries %} 
   <h1>{{Entry}}</h1> 
   {% endfor %}
-</html>
+
+  {% endif %}
+    
+  </body>
+  
