@@ -17,7 +17,8 @@
     <form action="{% url 'Home' %}" method="post">
       <textarea name="text"></textarea>
     </form>
-
-    {% for Entry in Entries %} {{Entry}} {% endfor %}
   </body>
+  {% for Entry in Entries %} 
+  <h1>{{Entry}}</h1> 
+  {% endfor %}
 </html>
