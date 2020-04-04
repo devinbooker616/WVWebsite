@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD
-  "python.pythonPath": "C:\\Users\\Irvings\\.virtualenvs\\ascent-WRCea9-W\\Scripts\\python.exe"
-}
-=======
   "python.pythonPath": "C:\\Users\\Irvings\\.virtualenvs\\ascent-WRCea9-W\\Scripts\\python.exe",
   "python.formatting.provider": "black"
 }
->>>>>>> 6161e2899af3a91a2e59d0c37ec019eae61d61f9
