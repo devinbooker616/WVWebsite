@@ -10,7 +10,7 @@ class Post(models.Model):
     pub_date = models.DateTimeField('date published', auto_now_add=True)
 
     def __str__(self):
-        return self.textbox
+        return self.title
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
