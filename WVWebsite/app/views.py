@@ -1,19 +1,22 @@
-from django.shortcuts import render, redirect
-from WVWebsite.app.models import Entry
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View
-from WVWebsite.app.forms import EntryForm
-from django import forms
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
+
+from WVWebsite.models import Comment
+from WvWebsite.models import Post
 
 
-def render_page(request):
-    website = Entry.objects.all()
-    return render(request, "index.html", {"Entries": website})
+class CommentCreate(LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ['body']
+    template_name = 'blog/create_comment.html'
+    login_url = reverse_lazy('login')
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.post = Post.objects.get(id=self.kwargs['pk'])
+        return super().form_valid(form)
 
-def new_post(request):
-    forms = EntryForm(request.POST)
-    if forms.is_valid():
-        textbox = forms.cleaned_data["textbox"]
-        new_entry = Entry.objects.create(textbox=textbox)
-        return redirect("index")
+    def get_success_url(self):
+        return reverse('blog:post', kwargs={'pk': self.kwargs['pk']})
+
