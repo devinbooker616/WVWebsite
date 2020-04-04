@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from WVWebsite.app.views import render_page
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", render_page, name="Home"),
     url(r"^tinymce/", include("tinymce.urls")),
+    path("accounts/", include("allauth.urls")),
+    path('index', TemplateView.as_view(template_name="index2.html")),
 ]
