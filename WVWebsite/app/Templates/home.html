@@ -18,9 +18,18 @@
         <textarea name="text">
         </textarea>
     </form>
-  {% for Entry in Entries %} 
-  <h1>{{Entry}}</h1> 
-  {% endfor %}
+   <div class="starter-template">
+            {% for post in posts %}
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div> Created {{ post.pub_date }} by <a
+                    
+                        </div>
+                    </div>
+                    <h1>{{post.title}}</h1>
+                    <h3 class="panel-body"> {{ post.body }}</h3>
+                </div>
+            {% endfor %}
     
   </body>
   

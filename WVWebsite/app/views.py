@@ -1,22 +1,54 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+from django.shortcuts import render
 
-from WVWebsite.models import Comment
-from WvWebsite.models import Post
+from WVWebsite.app.models import Comment, Post
+
+NUM_OF_POSTS = 5
+
+
+def render_page(request):
+    return render(request, "index.html")
 
 
 class CommentCreate(LoginRequiredMixin, CreateView):
     model = Comment
-    fields = ['body']
-    template_name = 'blog/create_comment.html'
-    login_url = reverse_lazy('login')
+    fields = ["body"]
+    template_name = "create_comment.html"
+    login_url = reverse_lazy("login")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.post = Post.objects.get(id=self.kwargs['pk'])
+        form.instance.post = Post.objects.get(id=self.kwargs["pk"])
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('blog:post', kwargs={'pk': self.kwargs['pk']})
+        return reverse("blog:post", kwargs={"pk": self.kwargs["pk"]})
 
+
+def home(request, username=None):
+    first_name = ""
+    last_name = ""
+    if username:
+        user = User.objects.get(username=username)
+        first_name = user.first_name
+        last_name = user.last_name
+        post_list = Post.objects.filter(user=user)
+    else:
+        post_list = Post.objects.all()
+
+    post_list = post_list.order_by("-pub_date")
+
+    paginator = Paginator(post_list, NUM_OF_POSTS)
+    page = request.GET.get("page")
+
+    posts = paginator.get_page(page)
+
+    return render(
+        request,
+        "home.html",
+        {"posts": posts, "first_name": first_name, "last_name": last_name},
+    )

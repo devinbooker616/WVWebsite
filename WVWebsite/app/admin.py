@@ -1,9 +1,14 @@
 from django.contrib import admin
-from WVWebsite.app.models import Entry
+from WVWebsite.app.models import Comment, Post
 
 
-class EntryAdmin(admin.ModelAdmin):
+class PostAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Entry, EntryAdmin)
+class CommentAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(Comment, CommentAdmin)
