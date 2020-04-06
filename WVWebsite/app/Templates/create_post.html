@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Django Blog</title>
@@ -14,7 +15,10 @@
     tinymce.init({ selector: "textarea" });
   </script>
 </head>
-<body>
+<body> {% endcomment %}
+
+{% block content %}
+
 
 <div class="container">
   <div class="row">
@@ -62,3 +66,4 @@
     </div>
   </div>
 </div>
+{% endblock content %}

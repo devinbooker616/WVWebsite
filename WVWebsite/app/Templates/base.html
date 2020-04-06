@@ -21,40 +21,40 @@
 <body>
 
 <!-- navbar -->
-{% comment %} <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'blog:home' %}">Blog App</a>
+            <a class="navbar-brand" href="{% url 'Home' %}">Blog App</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse navbar-right">
             <!-- show registration only if user is not yet authenticated -->
             {% if not user.is_authenticated %}
                 <ul class="nav navbar-nav ">
-                    <li class="active"><a href="{% url 'register' %}">Registration</a></li>
+                    <li class="active"><a href="">Registration</a></li>
                 </ul>
             {% endif %}
             <!-- show login only if user is not yet authenticated -->
             {% if not user.is_authenticated %}
                 <ul class="nav navbar-nav ">
-                    <li class="active"><a href="{% url 'login' %}">Login</a></li>
+                    <li class="active"><a href="">Login</a></li>
                 </ul>
             {% endif %}
             <!-- show My Blog only if user is authenticated -->
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav ">
-                    <li class="active"><a href="{% url 'blog:user_posts' user.username %}">My Blog</a></li>
+                    <li class="active"><a href="">My Blog</a></li>
                 </ul>
             {% endif %}
             <!-- show new post only if user is authenticated -->
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav ">
-                    <li class="active"><a href="{% url 'blog:create_post' %}">New Post</a></li>
+                    <li class="active"><a href="{% url 'create_post' %}">New Post</a></li>
                 </ul>
             {% endif %}
             <!-- show sign out only if user is authenticated -->
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav ">
-                    <li class="active"><a href="{% url 'logout' %}">Sign Out</a></li>
+                    <li class="active"><a href="">Sign Out</a></li>
                 </ul>
             {% endif %}
         </div>
@@ -78,7 +78,7 @@
                     | Logged user: {{ user.username }}
                     | Email: {{ user.email }}
                     | Admin:{{ user.is_superuser }}
-                    | <a href="{% url 'logout' %}">Sign Out</a>
+                    | <a href="">Sign Out</a>
                 </p>
             {% endif %}
 
@@ -93,7 +93,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-</div> {% endcomment %}
+</div> 
 
 </body>
 </html>

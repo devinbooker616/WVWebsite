@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,27 +10,38 @@
     <script>
         tinymce.init({ selector: "textarea" });
     </script>
-</head>
+</head> {% endcomment %}
 
+{% block content %}
 <body>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos dolor quo quisquam facilis nostrum quod tenetur
-        quos, nesciunt sequi. Officiis unde ad natus, vitae rem doloremque consectetur nostrum laudantium cumque.</p>
-    <form action="{% url 'Home' %}" method="post">
-        <textarea name="text">
-        </textarea>
-    </form>
    <div class="starter-template">
-            {% for post in posts %}
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div> Created {{ post.pub_date }} by <a
-                    
-                        </div>
+        {% for post in posts %}
+            <div class="panel">
+                <div class="panel-heading">
+                    <div> Created {{ post.pub_date }} by <a
+                
                     </div>
-                    <h1>{{post.title|safe}}</h1>
-                    <p class="panel-body"> {{ post.body|safe }}<p>
                 </div>
-            {% endfor %}
-    
-  </body>
-  
+                <h1>{{post.title|safe}}</h1>
+                <p class="panel-body"> {{ post.body|safe }}<p>
+            </div>
+            {% if user.is_superuser %}
+            <div class="row">
+
+                <!-- Delete button -->
+                <a href="{% url 'delete_post' post.pk %}" class="col-md-2 pull-right">
+                    <button type="button" class="btn btn-primary btn-block">Delete</button>
+                </a>
+
+                <!-- Update button -->
+                <a href="{% url 'update_post' post.pk %}" class="col-md-2 pull-right">
+                    <button type="button" class="btn btn-primary btn-block">Update</button>
+                </a>
+
+            </div>
+            {% else %} 
+           
+        {% endif %}
+        {% endfor %}
+</body>
+{% endblock content %}  
