@@ -14,6 +14,11 @@
 
 {% block content %}
 <body>
+    <form action="{% url 'Home' %}" method="post">
+        <textarea name="text">
+        </textarea>
+    </form>
+
    <div class="starter-template">
         {% for post in posts %}
             <div class="panel">
