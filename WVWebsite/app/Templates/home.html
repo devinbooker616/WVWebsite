@@ -26,8 +26,8 @@
                     
                         </div>
                     </div>
-                    <h1>{{post.title}}</h1>
-                    <h3 class="panel-body"> {{ post.body }}</h3>
+                    <h1>{{post.title|safe}}</h1>
+                    <p class="panel-body"> {{ post.body|safe }}<p>
                 </div>
             {% endfor %}
     

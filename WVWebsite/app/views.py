@@ -5,28 +5,13 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render
 
-from WVWebsite.app.models import Comment, Post
+from WVWebsite.app.models import Post
 
 NUM_OF_POSTS = 5
 
 
 def render_page(request):
     return render(request, "index.html")
-
-
-class CommentCreate(LoginRequiredMixin, CreateView):
-    model = Comment
-    fields = ["body"]
-    template_name = "create_comment.html"
-    login_url = reverse_lazy("login")
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        form.instance.post = Post.objects.get(id=self.kwargs["pk"])
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse("blog:post", kwargs={"pk": self.kwargs["pk"]})
 
 
 def home(request, username=None):
@@ -52,3 +37,14 @@ def home(request, username=None):
         "home.html",
         {"posts": posts, "first_name": first_name, "last_name": last_name},
     )
+
+
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ["title", "body"]
+    template_name = "create_post.html"
+    login_url = reverse_lazy("login")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

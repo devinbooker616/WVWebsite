@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-from WVWebsite.app.views import render_page, home
+from WVWebsite.app.views import render_page, home, PostCreate
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -25,4 +25,5 @@ urlpatterns = [
     url(r"^tinymce/", include("tinymce.urls")),
     path("accounts/", include("allauth.urls")),
     path("index", TemplateView.as_view(template_name="index2.html")),
+    path("post/create/", PostCreate.as_view(), name="create_post"),
 ]

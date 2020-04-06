@@ -1,0 +1,33 @@
+h1 {
+  color: #0000ff;
+}
+
+h2 {
+  color: #ff0000;
+}
+
+footer {
+  margin-top: 60px;
+}
+
+.validation-message {
+  font-style: normal;
+  font-size: 10px;
+  color: #ff1c19;
+}
+
+a {
+  transition: all 0.2s;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: purple;
+  text-decoration: none;
+}
+
+.pagination {
+  display: block;
+  text-align: center;
+}
