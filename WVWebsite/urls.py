@@ -16,16 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-from WVWebsite.app.views import render_page, home, PostCreate,  PostUpdate, PostDelete
+from WVWebsite.app.views import (
+    render_page,
+    HomeView,
+    PostCreate,
+    PostUpdate,
+    PostDelete,
+)
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", home, name="Home"),
+    path("", HomeView.as_view(), name="Home"),
     url(r"^tinymce/", include("tinymce.urls")),
     path("accounts/", include("allauth.urls")),
     path("index", TemplateView.as_view(template_name="index2.html")),
     path("post/create/", PostCreate.as_view(), name="create_post"),
-    path('post/create/<int:pk>/update', PostUpdate.as_view(), name='update_post'),
-    path('post/<int:pk>/delete/', PostDelete.as_view(), name='delete_post'),
+    path("post/create/<int:pk>/update", PostUpdate.as_view(), name="update_post"),
+    path("post/<int:pk>/delete/", PostDelete.as_view(), name="delete_post"),
 ]
