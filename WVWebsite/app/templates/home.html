@@ -1,17 +1,4 @@
 {% extends "base.html" %}
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({ selector: "textarea" });
-    </script>
-</head> {% endcomment %}
-
 {% block content %}
 <body>
     <form action="{% url 'Home' %}" method="post">
@@ -24,7 +11,7 @@
             <div class="panel">
                 <div class="panel-heading">
                     <div> Created {{ post.pub_date }} by <a
-                
+
                     </div>
                 </div>
                 <h1>{{post.title|safe}}</h1>
@@ -44,9 +31,9 @@
                 </a>
 
             </div>
-            {% else %} 
-           
+            {% else %}
+
         {% endif %}
         {% endfor %}
 </body>
-{% endblock content %}  
+{% endblock content %}
