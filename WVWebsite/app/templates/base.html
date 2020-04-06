@@ -26,13 +26,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+      <ul class="navbar-nav ml-auto">
         <!-- show registration only if user is not yet authenticated -->
         {% if not user.is_authenticated %}
         <li class="nav-item"><a class="nav-link" href="">Registration</a></li>
@@ -43,7 +37,7 @@
         {% endif %}
         <!-- show My Blog only if user is authenticated -->
         {% if user.is_authenticated %}
-        <li class="nav-item"><a class="nav-link" href="">My Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="">My Info</a></li>
         {% endif %}
         <!-- show new post only if user is authenticated -->
         {% if user.is_authenticated %}
@@ -59,35 +53,45 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container shadow">
     <div id="content">
-
       <div id="header-img" style="background-image: url('{% static 'bg.jpg' %}');" class="mt-1 text-white">
         <h1>City of Water Valley</h1>
         <small>101 Blackmur Drive, Water Valley, MS 38965</small>
       </div>
-
-      {% block content %}{% endblock %}
-    </div>
-
-    <hr />
-
-    <!-- footer -->
-    <div class="row">
-      <div class="col-sm-12">
-        <!-- Logged user info -->
-        {% if user.is_authenticated %}
+      <!-- Logged user info -->
+      {% if user.is_authenticated %}
+      <div>
         <p class="text-center">
           | Logged user: {{ user.username }} | Email: {{ user.email }} |
           Admin:{{ user.is_superuser }} | <a href="">Sign Out</a>
         </p>
-        {% endif %}
-
-        <div>
-          <p class="text-center">&copy; 2020; Information contained on this website may not by current, is not subject
-            to verification, and is intended for informational purposes only</p>
-        </div>
       </div>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </div>
+
+
+    <!-- footer -->
+    <div class="mb-3 p-1">
+      <p class="text-right">&copy; City of Water Valley 2020<br>
+        Information contained on this website may not by current, is not subject
+        to verification, and is intended for informational purposes only</p>
+      <p class="text-right">Created in partnership with <a href="https://basecampcodingacademy.org/"
+          target="_blank">Base Camp Coding
+          Academy</a> by class of 2020 students <a href="https://devinbooker616.github.io/" target="_blank">Devin
+          Booker</a> and <a href="https://tyler-irving.github.io/" target="_blank">Tyler Irving.</a></p>
+      <p class="text-right">
+        <a href="https://basecampcodingacademy.org/" target="_blank">
+          <img class="icon-image" src="{% static 'bcca.png' %}">
+        </a>
+        <a href="https://devinbooker616.github.io/" target="_blank">
+          <img class="icon-image" src="{% static 'db.jpg' %}">
+        </a>
+        <a href="https://tyler-irving.github.io/" target="_blank">
+          <img class="icon-image" src="{% static 'ti.jpg' %}">
+        </a>
+      </p>
     </div>
   </div>
 
