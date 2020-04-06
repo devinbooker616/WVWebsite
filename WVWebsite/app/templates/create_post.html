@@ -1,51 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="row">
+  <div class="col-md-6">
+    <!-- Form - Blog Post -->
+    <form action="" method="post" class="form-horizontal">
+      {% csrf_token %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <!-- Form - Blog Post -->
-      <form action="" method="post" class="form-horizontal">
-        {% csrf_token %}
+      <div class="form-group">
+        <div class="col-sm-9">
+          <!-- Errors - title -->
+          {% if form.title.errors %}
+          <label class="alert alert-danger">{{ form.title.errors }}</label>
+          {% endif %}
 
-        <div class="form-group">
-          <div class="col-sm-9">
-            <!-- Errors - title -->
-            {% if form.title.errors %}
-            <label class="alert alert-danger">{{ form.title.errors }}</label>
-            {% endif %}
-
-            <!-- Form field - title -->
-            <textarea type="text" placeholder="Title" class="form-control"
-            name="title" value="{{ form.title.value|default:"" }}"></textarea>
-          </div>
+          <!-- Form field - title -->
+          <textarea type="text" placeholder="Title" class="form-control" name="title"
+            value="{{ form.title.value|default:"" }}"></textarea>
         </div>
+      </div>
 
-        <div class="form-group">
-          <div class="col-sm-9">
-            <!-- Errors - body -->
-            {% if form.body.errors %}
-            <label class="alert alert-danger">{{ form.body.errors }}</label>
-            {% endif %}
+      <div class="form-group">
+        <div class="col-sm-9">
+          <!-- Errors - body -->
+          {% if form.body.errors %}
+          <label class="alert alert-danger">{{ form.body.errors }}</label>
+          {% endif %}
 
-            <!-- Form fields - body -->
-            <textarea placeholder="Body" class="form-control" name="body">
-{{ form.body.value|default:"" }}</textarea
-            >
-          </div>
+          <!-- Form fields - body -->
+          <textarea placeholder="Body" class="form-control" name="body">
+{{ form.body.value|default:"" }}</textarea>
         </div>
+      </div>
 
-        <div class="form-group">
-          <div class="col-sm-9">
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block">
-              Save
-            </button>
-          </div>
+      <div class="form-group">
+        <div class="col-sm-9">
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block">
+            Save
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </div>
 {% endblock content %}

@@ -1,9 +1,26 @@
-h1 {
+/* h1 {
   color: #0000ff;
+} */
+
+/* h2 {
+  color: #ff0000;
+} */
+
+#header-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center middle;
+  padding: 3rem;
+  padding-top: 8rem;
+  background-attachment: fixed;
 }
 
-h2 {
-  color: #ff0000;
+.post-header {
+  margin-bottom: 0rem;
+}
+
+p {
+  margin-bottom: 0rem;
 }
 
 footer {

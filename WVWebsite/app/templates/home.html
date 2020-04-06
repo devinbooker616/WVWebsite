@@ -1,34 +1,80 @@
 {% extends "base.html" %}
 {% block content %}
-<body>
-   <div class="starter-template container">
-        {% for post in posts %}
-            <div class="panel">
-                <div class="panel-heading">
-                    <div> Created {{ post.pub_date }} by <a
 
-                    </div>
-                </div>
-                <h1>{{post.title|safe}}</h1>
-                <p class="panel-body"> {{ post.body|safe }}<p>
+
+<div id="about">
+    <div class="row mt-2">
+        <div class="col-md-5">
+            <div class="p-2">
+                <h5>About</h5>
+                <p>Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Vitae sapien pellentesque
+                    habitant morbi. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Orci a scelerisque purus
+                    semper. Purus faucibus ornare suspendisse sed nisi. Natoque penatibus et magnis dis parturient
+                    montes nascetur ridiculus. Id neque aliquam vestibulum morbi blandit cursus risus at. Cras tincidunt
+                    lobortis feugiat vivamus at augue eget. Eros donec ac odio tempor orci.</p>
             </div>
-            {% if user.is_superuser %}
-            <div class="row">
-
-                <!-- Delete button -->
-                <a href="{% url 'delete_post' post.pk %}" class="col-md-2 pull-right">
-                    <button type="button" class="btn btn-primary btn-block">Delete</button>
-                </a>
-
-                <!-- Update button -->
-                <a href="{% url 'update_post' post.pk %}" class="col-md-2 pull-right">
-                    <button type="button" class="btn btn-primary btn-block">Update</button>
-                </a>
-
+        </div>
+        <div class="col-md-3">
+            <div class="p-2">
+                <ul>
+                    <li><a href="https://www.doxo.com/info/city-water-valley-util-dept-ms" target="_blank">Pay your
+                            utilities</a></li>
+                    <li><a href="https://www.facebook.com/pages/Water-Valley-City-Hall/105772119798635"
+                            target="_blank">City
+                            Facebook Page</a></li>
+                    <li><a href="https://www.watervalleychamber.com/" target="_blank">Chamber of Commerce</a></li>
+                </ul>
             </div>
-            {% else %}
+        </div>
+        <div class="col-md-4">
+            <div class="bg-dark rounded text-white p-2">
+                <p>
+                    <b>Mayor</b><br>
+                    Donald Gray<br><br>
+                    <b>Board of Aldermen</b><br>
+                    Kagan Coughlin (Ward 1)<br>
+                    Fred White (Ward 2)<br>
+                    Cinnamon Foster (Ward 3)<br>
+                    Nicole Foster (Ward 4)<br>
+                    Herbert Rogers (Alderman-at-Large)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
-        {% endif %}
-        {% endfor %}
-</body>
+
+<div class="posts p-4">
+    <h3>Community Updates</h3>
+    {% for post in posts %}
+    <div class="card my-1">
+        <div class="card-body">
+            <h5 class="post-header">{{post.title|safe}}</h5>
+            <small class="mt-0 mb-1">
+                Created {{ post.pub_date }} by {{ post.user }}
+            </small>
+            <div>
+                {{ post.body|safe }}
+            </div>
+        </div>
+    </div>
+    {% if user.is_superuser %}
+    <div class="row">
+
+        <!-- Delete button -->
+        <a href="{% url 'delete_post' post.pk %}" class="col-md-2 pull-right">
+            <button type="button" class="btn btn-primary btn-block">Delete</button>
+        </a>
+
+        <!-- Update button -->
+        <a href="{% url 'update_post' post.pk %}" class="col-md-2 pull-right">
+            <button type="button" class="btn btn-primary btn-block">Update</button>
+        </a>
+
+    </div>
+    {% else %}
+
+    {% endif %}
+    {% endfor %}
+</div>
 {% endblock content %}
