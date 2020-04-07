@@ -52,10 +52,12 @@
 
   <div class="container shadow">
     <div id="content">
-      <div id="header-img" style="background-image: url('{% static 'bg.jpg' %}');" class="mt-1 text-white">
-        <div class="title-text-bg p-2 rounded">
-          <span class="big-text">City of Water Valley</span><br>
-          <small>101 Blackmur Drive, Water Valley, MS 38965</small>
+      <div id="header-wrapper">
+        <div id="header-img" style="background-image: url('{% static 'bg.jpg' %}');" class="mt-1 text-white">
+          <div class="title-text-bg p-2 rounded">
+            <span class="big-text">City of Water Valley</span><br>
+            <small>101 Blackmur Drive, Water Valley, MS 38965</small>
+          </div>
         </div>
       </div>
       <!-- Logged user info -->
@@ -113,6 +115,24 @@
   <script>
     tinymce.init({
       selector: "textarea"
+    });
+
+    function reposition_banner() {
+      let h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      let contentHeight = $('#header-wrapper').innerHeight();
+      contentWidth = $('#content').width();
+      if (contentHeight > contentWidth / 2) {
+        $('#header-img').css('background-size', 'auto ' + contentHeight + 'px').css('background-position',
+          'center 0%');
+        console.log($('#header-img').css('background-size'));
+      } else {
+        $('#header-img').css('background-size', '100% auto').css('background-position',
+          'center -10%');;
+      }
+    }
+
+    $(window).on('resize load orientationchange', function () {
+      reposition_banner();
     });
   </script>
 

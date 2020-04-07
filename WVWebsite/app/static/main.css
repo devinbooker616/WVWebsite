@@ -5,9 +5,9 @@
   margin-right: -15px;
   min-width: 100%;
   background-repeat: no-repeat;
-  background-position: center -50%;
-  background-attachment: fixed;
   background-size: 100% auto;
+  background-attachment: fixed;
+  background-position: center 0%;
 }
 
 .title-text-bg {
