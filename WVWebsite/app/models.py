@@ -15,3 +15,11 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("Home")
+
+
+class About(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.content

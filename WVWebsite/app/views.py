@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from WVWebsite.app.models import Post
+from WVWebsite.app.models import Post, About
 
 
 def render_page(request):
@@ -61,6 +61,16 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
     def test_func(self):
         return Post.objects.get(id=self.kwargs["pk"])
+
+
+class AboutUpdate(LoginRequiredMixin, UpdateView):
+    model = About
+    fields = ["about"]
+    template_name = "update_about.html"
+    login_url = reverse_lazy("login")
+
+    def test_func(self):
+        return About.objects.all()
 
 
 class PostDelete(LoginRequiredMixin, DeleteView):

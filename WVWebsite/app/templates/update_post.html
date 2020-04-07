@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <div class="form-group p-2">
+      <h5>Body</h5>
+      <!-- Errors - body -->
+      <!-- Form fields - body -->
+      <textarea placeholder="Body" class="form-control m-5" name="body">
+            {{ form.about.value|default:"" }}</textarea>
+    </div>
+
+    <div class="form-group">
+      <div>
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-info btn-block w-50 mx-auto">
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
