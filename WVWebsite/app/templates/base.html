@@ -12,7 +12,9 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+  <!-- Custom Script -->
   <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
   <title>Water Valley, Mississippi</title>
 </head>
@@ -37,8 +39,8 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'create_post' %}">New Post</a>
         </li>
-        {% else %} 
-        
+        {% else %}
+
         {% endif %}
         <!-- show sign out only if user is authenticated -->
         {% if user.is_authenticated %}
@@ -51,8 +53,10 @@
   <div class="container shadow">
     <div id="content">
       <div id="header-img" style="background-image: url('{% static 'bg.jpg' %}');" class="mt-1 text-white">
-        <h1>City of Water Valley</h1>
-        <small>101 Blackmur Drive, Water Valley, MS 38965</small>
+        <div class="title-text-bg p-2 rounded">
+          <span class="big-text">City of Water Valley</span><br>
+          <small>101 Blackmur Drive, Water Valley, MS 38965</small>
+        </div>
       </div>
       <!-- Logged user info -->
       {% if user.is_authenticated %}
@@ -86,6 +90,10 @@
         <a href="https://tyler-irving.github.io/" target="_blank">
           <img class="icon-image" src="{% static 'ti.jpg' %}">
         </a>
+      </p>
+      <p class="text-right">
+        <small>Background image courtesy <a href="https://commons.wikimedia.org/wiki/User:Fredlyfish4"
+            target="_blank">FredlyFish4</a></small>
       </p>
     </div>
   </div>
