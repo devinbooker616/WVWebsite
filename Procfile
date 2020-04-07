@@ -1,0 +1,1 @@
+web: python3 manage.py check --deploy && gunicorn WVWebsite.wsgi -w 4
