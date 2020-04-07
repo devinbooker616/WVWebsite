@@ -18,20 +18,24 @@ from django.urls import path, include
 from django.conf.urls import url
 from WVWebsite.app.views import (
     render_page,
-    HomeView,
+    home,
     PostCreate,
     PostUpdate,
     PostDelete,
+    logout_view,
 )
 from django.views.generic import TemplateView
+from django.conf import settings
+from django.contrib.auth import logout
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", HomeView.as_view(), name="Home"),
+    path("", home, name="Home"),
     url(r"^tinymce/", include("tinymce.urls")),
     path("accounts/", include("allauth.urls")),
     path("index", TemplateView.as_view(template_name="index2.html")),
     path("post/create/", PostCreate.as_view(), name="create_post"),
     path("post/create/<int:pk>/update", PostUpdate.as_view(), name="update_post"),
     path("post/<int:pk>/delete/", PostDelete.as_view(), name="delete_post"),
+    url("logout/", logout_view, name="logout"),
 ]
