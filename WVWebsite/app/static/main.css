@@ -1,13 +1,21 @@
-h1 {
-  color: #0000ff;
+#header-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center middle;
+  padding: 3rem;
+  padding-top: 8rem;
+  background-attachment: fixed;
+  margin-left: -15px;
+  margin-right: -15px;
+  min-width: 100%;
 }
 
-h2 {
-  color: #ff0000;
+.post-header {
+  margin-bottom: 0rem;
 }
 
-footer {
-  margin-top: 60px;
+p {
+  margin-bottom: 0rem;
 }
 
 .validation-message {
@@ -20,14 +28,18 @@ a {
   transition: all 0.2s;
 }
 
-a:hover,
-a:focus,
-a:active {
-  color: purple;
+a:hover, a:focus, a:active {
+  color: #99e0f7;
   text-decoration: none;
 }
 
 .pagination {
   display: block;
   text-align: center;
+}
+
+img.icon-image {
+  border-radius: 50%;
+  max-height: 50px;
+  border: #99e0f7 solid 1px;
 }
