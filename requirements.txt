@@ -3,4 +3,6 @@ django-allauth
 django-tinymce
 dj-database-url
 whitenoise
+psycopg2-binary
 gunicorn
+sentry-sdk
