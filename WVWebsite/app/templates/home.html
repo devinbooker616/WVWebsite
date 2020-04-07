@@ -54,25 +54,21 @@
             <div>
                 {{ post.body|safe }}
             </div>
+            {% if user.is_superuser %}
+            <div>
+                <!-- Delete button -->
+                <a href="{% url 'delete_post' post.pk %}">
+                    <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                </a>
+                <!-- Update button -->
+                <a href="{% url 'update_post' post.pk %}">
+                    <button type="button" class="btn btn-sm btn-primary">Update</button>
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
-    {% if user.is_superuser %}
-    <div class="row">
 
-        <!-- Delete button -->
-        <a href="{% url 'delete_post' post.pk %}" class="col-md-2 pull-right">
-            <button type="button" class="btn btn-primary btn-block">Delete</button>
-        </a>
-
-        <!-- Update button -->
-        <a href="{% url 'update_post' post.pk %}" class="col-md-2 pull-right">
-            <button type="button" class="btn btn-primary btn-block">Update</button>
-        </a>
-
-    </div>
-    {% else %}
-
-    {% endif %}
     {% endfor %}
 </div>
 {% endblock content %}
