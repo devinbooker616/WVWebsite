@@ -9,9 +9,12 @@
                 <h5>About</h5>
                     {% for about in abouts  %}
                         {{about.content|safe}}
+                        {% if user.is_superuser %}
                        <a href="{% url 'update_about' about.pk %}" class="col-md-2 pull-right">
                             <button type="button" class="btn btn-primary btn-block">Update</button>
                         </a>
+                      {% endif %}
+
                     {% endfor %}
                     
             </div>
