@@ -35,7 +35,6 @@ urlpatterns = [
     path("", home, name="Home"),
     path("tinymce/", include("tinymce.urls")),
     path("accounts/", include("allauth.urls")),
-    path("index", TemplateView.as_view(template_name="index2.html")),
     path("post/create/", PostCreate.as_view(), name="create_post"),
     path("post/create/<int:pk>/update", PostUpdate.as_view(), name="update_post"),
     path("post/<int:pk>/delete/", PostDelete.as_view(), name="delete_post"),
