@@ -14,7 +14,7 @@ def render_page(request):
 
 def logout_view(request):
     logout(request)
-    return render(request, "home.html")
+    return redirect("Home")
 
 
 def home(request, username=None):
@@ -34,7 +34,7 @@ def home(request, username=None):
     page = request.GET.get("page")
 
     posts = paginator.get_page(page)
-    about = About.objects.all()
+    abouts = About.objects.all()
 
     return render(
         request,
@@ -43,7 +43,7 @@ def home(request, username=None):
             "posts": posts,
             "first_name": first_name,
             "last_name": last_name,
-            "about": about,
+            "abouts": abouts,
         },
     )
 
@@ -73,7 +73,8 @@ class AboutUpdate(LoginRequiredMixin, UpdateView):
     model = About
     fields = ["content"]
     template_name = "update_about.html"
-    login_url = reverse_lazy("login")
+    login_url = "/accounts/google/login/"
+    success_url = reverse_lazy("Home")
 
     def test_func(self):
         return About.objects.get(id=self.kwargs["pk"])

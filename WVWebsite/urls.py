@@ -33,12 +33,12 @@ from django.contrib.auth import logout
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", home, name="Home"),
-    url(r"^tinymce/", include("tinymce.urls")),
+    path("tinymce/", include("tinymce.urls")),
     path("accounts/", include("allauth.urls")),
     path("index", TemplateView.as_view(template_name="index2.html")),
     path("post/create/", PostCreate.as_view(), name="create_post"),
     path("post/create/<int:pk>/update", PostUpdate.as_view(), name="update_post"),
     path("post/<int:pk>/delete/", PostDelete.as_view(), name="delete_post"),
-    path("about/<int:pk>/update", AboutUpdate, name="update_about"),
-    url("", logout_view, name="logout"),
+    path("about/<int:pk>/update", AboutUpdate.as_view(), name="update_about"),
+    path("logout", logout_view, name="logout"),
 ]

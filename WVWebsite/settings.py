@@ -137,6 +137,8 @@ SOCIALACCOUNT_PROVIDERS = {
     "google": {"SCOPE": ["profile", "email"], "AUTH_PARAMS": {"access_type": "online"}}
 }
 
+SOCIALACCOUNT_ADAPTER = "WVWebsite.auth.CustomSocialAccountAdapter"
+
 SECURE_REFERRER_POLICY = "strict-origin"
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG

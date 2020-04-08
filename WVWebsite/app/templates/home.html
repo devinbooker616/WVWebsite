@@ -7,14 +7,9 @@
         <div class="col-md-5">
             <div class="p-2">
                 <h5>About</h5>
-                <p>Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Vitae sapien pellentesque
-                    habitant morbi. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Orci a scelerisque purus
-                    semper. Purus faucibus ornare suspendisse sed nisi. Natoque penatibus et magnis dis parturient
-                    montes nascetur ridiculus. Id neque aliquam vestibulum morbi blandit cursus risus at. Cras tincidunt
-                    lobortis feugiat vivamus at augue eget. Eros donec ac odio tempor orci.</p>
-                    {% for abouts in about  %}
-                    {{abouts.content}}
-                       <a href="{% url 'update_about' abouts.pk %}" class="col-md-2 pull-right">
+                    {% for about in abouts  %}
+                        {{about.content|safe}}
+                       <a href="{% url 'update_about' about.pk %}" class="col-md-2 pull-right">
                             <button type="button" class="btn btn-primary btn-block">Update</button>
                         </a>
                     {% endfor %}
