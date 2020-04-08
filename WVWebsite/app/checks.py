@@ -13,3 +13,4 @@ def production_doesnt_run_on_sqlite(*args, **kwargs):
                 id="app.E001",
             )
         ]
+    return []
