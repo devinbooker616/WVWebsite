@@ -34,11 +34,17 @@ def home(request, username=None):
     page = request.GET.get("page")
 
     posts = paginator.get_page(page)
+    about = About.objects.all()
 
     return render(
         request,
         "home.html",
-        {"posts": posts, "first_name": first_name, "last_name": last_name},
+        {
+            "posts": posts,
+            "first_name": first_name,
+            "last_name": last_name,
+            "about": about,
+        },
     )
 
 
@@ -65,12 +71,12 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
 class AboutUpdate(LoginRequiredMixin, UpdateView):
     model = About
-    fields = ["about"]
+    fields = ["content"]
     template_name = "update_about.html"
     login_url = reverse_lazy("login")
 
     def test_func(self):
-        return About.objects.all()
+        return About.objects.get(id=self.kwargs["pk"])
 
 
 class PostDelete(LoginRequiredMixin, DeleteView):
