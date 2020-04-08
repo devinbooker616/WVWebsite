@@ -39,6 +39,6 @@ urlpatterns = [
     path("post/create/", PostCreate.as_view(), name="create_post"),
     path("post/create/<int:pk>/update", PostUpdate.as_view(), name="update_post"),
     path("post/<int:pk>/delete/", PostDelete.as_view(), name="delete_post"),
-    url("", logout_view, name="logout"),
     path("about/<int:pk>/update", AboutUpdate, name="update_about"),
+    url("", logout_view, name="logout"),
 ]

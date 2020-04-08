@@ -15,8 +15,8 @@
                     {% for abouts in about  %}
                     {{abouts.content}}
                        <a href="{% url 'update_about' abouts.pk %}" class="col-md-2 pull-right">
-            <button type="button" class="btn btn-primary btn-block">Update</button>
-        </a>
+                            <button type="button" class="btn btn-primary btn-block">Update</button>
+                        </a>
                     {% endfor %}
                     
             </div>
