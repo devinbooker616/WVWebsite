@@ -20,7 +20,8 @@
   font-size: 3rem;
 }
 
-.post-header {
+.post-header>p {
+  display: inline-block;
   margin-bottom: 0rem;
 }
 
@@ -52,4 +53,16 @@ img.icon-image {
   border-radius: 50%;
   max-height: 50px;
   border: #99e0f7 solid 1px;
+}
+
+.ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chevron-up {
+  background-color: lightgray;
 }
