@@ -6,7 +6,6 @@
     <div class="row mt-2">
         <div class="col-md-5">
             <div class="p-2">
-                <h5>About</h5>
                     {% for about in abouts  %}
                         {{about.content|safe}}
                         {% if user.is_superuser %}
