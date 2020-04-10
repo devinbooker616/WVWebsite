@@ -6,16 +6,16 @@
     <div class="row mt-2">
         <div class="col-md-5">
             <div class="p-2">
-                    {% for about in abouts  %}
-                        {{about.content|safe}}
-                        {% if user.is_superuser %}
-                       <a href="{% url 'update_about' about.pk %}" class="col-md-2 pull-right">
-                            <button type="button" class="btn btn-primary btn-block">Update</button>
-                        </a>
-                      {% endif %}
+                {% for about in abouts  %}
+                {{about.content|safe}}
+                {% if user.is_superuser %}
+                <a href="{% url 'update_about' about.pk %}" class="col-md-2 pull-right">
+                    <button type="button" class="btn btn-primary btn-block">Update</button>
+                </a>
+                {% endif %}
 
-                    {% endfor %}
-                    
+                {% endfor %}
+
             </div>
         </div>
         <div class="col-md-3">
@@ -49,14 +49,17 @@
 <div class="posts p-4">
     <h3>Community Updates</h3>
     {% for post in posts %}
-    <div class="card my-1">
+    <div class="card my-1 update-box">
         <div class="card-body">
-            <h5 class="post-header">{{post.title|safe}}</h5>
+            <h5 class="post-header border-bottom d-flex justify-content-between chevron-down p-1 rounded">
+                {{post.title|safe}}<span class="ml-auto chevron">&#x25BC;</span></h5>
             <small class="mt-0 mb-1">
                 Created {{ post.pub_date }} by {{ post.user }}
             </small>
-            <div>
-                {{ post.body|safe }}
+            <div class="post-body ellipsis">
+                <div>
+                    {{ post.body|safe }}
+                </div>
             </div>
             {% if user.is_superuser %}
             <div>
@@ -72,7 +75,38 @@
             {% endif %}
         </div>
     </div>
-
     {% endfor %}
 </div>
+
+<script>
+    function expandTextFromChevron() {
+        $(this).find('span.chevron').html('&#x25B2;');
+        $(this).parent().find('div.post-body').removeClass('ellipsis');
+        $(this).removeClass('chevron-down').addClass('chevron-up');
+        $('.chevron-up').click(collapseTextFromChevron);
+    }
+
+    $('.chevron-down').click(expandTextFromChevron);
+
+    function expandTextFromEllipsis() {
+        $(this).parent().find('.chevron-down').removeClass('chevron-down').addClass('chevron-up').find('span.chevron')
+            .html('&#x25B2;');
+        $(this).removeClass('ellipsis');
+        $('.chevron-up').click(collapseTextFromChevron);
+    }
+
+    $('.ellipsis').click(expandTextFromEllipsis);
+
+    function collapseTextFromChevron() {
+        console.log('hello?')
+        $(this).find('span.chevron').html('&#x25BC;');
+        $(this).parent().find('div.post-body').addClass('ellipsis');
+        $(this).removeClass('chevron-up').addClass('chevron-down');
+    }
+
+    $('.chevron-up').click(collapseTextFromChevron);
+</script>
+
+
+
 {% endblock content %}
