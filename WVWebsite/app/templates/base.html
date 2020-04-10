@@ -65,7 +65,7 @@
       <div>
         <p class="text-center">
           | Logged user: {{ user.username }} | Email: {{ user.email }} |
-          Admin:{{ user.is_superuser }} | <a  href="{% url 'logout' %}">Sign Out</a>
+          Admin:{{ user.is_superuser }} | <a href="{% url 'logout' %}">Sign Out</a>
         </p>
       </div>
       {% endif %}
@@ -127,7 +127,7 @@
         console.log($('#header-img').css('background-size'));
       } else {
         $('#header-img').css('background-size', '100% auto').css('background-position',
-          'center -10%');;
+          'center -50%');;
       }
     }
 
