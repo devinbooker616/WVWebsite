@@ -37,7 +37,7 @@
                     Kagan Coughlin (Ward 1)<br>
                     Fred White (Ward 2)<br>
                     Cinnamon Foster (Ward 3)<br>
-                    Nicole Foster (Ward 4)<br>
+                    Nicole Folson (Ward 4)<br>
                     Herbert Rogers (Alderman-at-Large)
                 </p>
             </div>
@@ -51,12 +51,12 @@
     {% for post in posts %}
     <div class="card my-1 update-box">
         <div class="card-body">
-            <h5 class="post-header border-bottom d-flex justify-content-between chevron-down p-1 rounded">
+            <h5 class="post-header border-bottom d-flex justify-content-between text-change chevron-down p-1 rounded">
                 {{post.title|safe}}<span class="ml-auto chevron">&#x25BC;</span></h5>
             <small class="mt-0 mb-1">
                 Created {{ post.pub_date }} by {{ post.user }}
             </small>
-            <div class="post-body ellipsis">
+            <div class="post-body text-change ellipsis">
                 <div>
                     {{ post.body|safe }}
                 </div>
@@ -79,32 +79,33 @@
 </div>
 
 <script>
-    function expandTextFromChevron() {
-        $(this).find('span.chevron').html('&#x25B2;');
-        $(this).parent().find('div.post-body').removeClass('ellipsis');
-        $(this).removeClass('chevron-down').addClass('chevron-up');
-        $('.chevron-up').click(collapseTextFromChevron);
+    function changeText() {
+        var clicked = $(this);
+
+        // hide expanded text from chevron
+        if (clicked.hasClass('chevron-up')) {
+            $(this).find('span.chevron').html('&#x25BC;');
+            $(this).parent().find('div.post-body').addClass('ellipsis');
+            $(this).removeClass('chevron-up').addClass('chevron-down');
+        }
+        // expand text from chevron
+        else if (clicked.hasClass('chevron-down')) {
+            $(this).find('span.chevron').html('&#x25B2;');
+            $(this).parent().find('div.post-body').removeClass('ellipsis');
+            $(this).removeClass('chevron-down').addClass('chevron-up');
+            $('.chevron-up').click(collapseTextFromChevron);
+        }
+        // expand text from ellipsis
+        else if (clicked.hasClass('ellipsis')) {
+            $(this).parent().find('.chevron-down').removeClass('chevron-down').addClass('chevron-up').find(
+                    'span.chevron')
+                .html('&#x25B2;');
+            $(this).removeClass('ellipsis');
+            $('.chevron-up').click(collapseTextFromChevron);
+        }
     }
 
-    $('.chevron-down').click(expandTextFromChevron);
-
-    function expandTextFromEllipsis() {
-        $(this).parent().find('.chevron-down').removeClass('chevron-down').addClass('chevron-up').find('span.chevron')
-            .html('&#x25B2;');
-        $(this).removeClass('ellipsis');
-        $('.chevron-up').click(collapseTextFromChevron);
-    }
-
-    $('.ellipsis').click(expandTextFromEllipsis);
-
-    function collapseTextFromChevron() {
-        console.log('hello?')
-        $(this).find('span.chevron').html('&#x25BC;');
-        $(this).parent().find('div.post-body').addClass('ellipsis');
-        $(this).removeClass('chevron-up').addClass('chevron-down');
-    }
-
-    $('.chevron-up').click(collapseTextFromChevron);
+    $('.text-change').click(changeText);
 </script>
 
 
