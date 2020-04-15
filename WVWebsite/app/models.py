@@ -24,5 +24,11 @@ class About(models.Model):
     def __str__(self):
         return self.content
 
+
 class WhiteListedEmail(models.Model):
     email = models.EmailField()
+
+
+class Ordinance(models.Model):
+    link = models.URLField()
+    title = models.TextField()
