@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from WVWebsite.app.models import Post, About
+from WVWebsite.app.models import Post, About, Ordinance
 
 
 def render_page(request):
@@ -88,3 +88,14 @@ class PostDelete(LoginRequiredMixin, DeleteView):
 
     def test_func(self):
         return Post.objects.get(id=self.kwargs["pk"])
+
+
+class OrdinanceCreate(LoginRequiredMixin, CreateView):
+    model = Ordinance
+    fields = ["link", "title"]
+    template_name = "create_ordinance.html"
+    login_url = reverse_lazy("login")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
