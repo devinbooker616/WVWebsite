@@ -35,6 +35,7 @@ def home(request, username=None):
 
     posts = paginator.get_page(page)
     abouts = About.objects.all()
+    ordinances = Ordinance.objects.all()
 
     return render(
         request,
@@ -44,6 +45,7 @@ def home(request, username=None):
             "first_name": first_name,
             "last_name": last_name,
             "abouts": abouts,
+            "ordinances": ordinances,
         },
     )
 
@@ -95,7 +97,29 @@ class OrdinanceCreate(LoginRequiredMixin, CreateView):
     fields = ["link", "title"]
     template_name = "create_ordinance.html"
     login_url = reverse_lazy("login")
+    success_url = reverse_lazy("Home")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class OrdinanceUpdate(LoginRequiredMixin, UpdateView):
+    model = Ordinance
+    fields = ["link", "title"]
+    template_name = "create_ordinance.html"
+    login_url = reverse_lazy("login")
+    success_url = reverse_lazy("Home")
+
+    def test_func(self):
+        return Ordinance.objects.get(id=self.kwargs["pk"])
+
+
+class OrdinanceDelete(LoginRequiredMixin, DeleteView):
+    model = Ordinance
+    success_url = reverse_lazy("Home")
+    login_url = reverse_lazy("login")
+    template_name = "ordinance_confirm_delete.html"
+
+    def test_func(self):
+        return Post.objects.get(id=self.kwargs["pk"])

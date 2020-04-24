@@ -26,6 +26,8 @@ from WVWebsite.app.views import (
     UpdateView,
     AboutUpdate,
     OrdinanceCreate,
+    OrdinanceUpdate,
+    OrdinanceDelete,
 )
 from django.views.generic import TemplateView
 from django.conf import settings
@@ -41,5 +43,13 @@ urlpatterns = [
     path("post/<int:pk>/delete/", PostDelete.as_view(), name="delete_post"),
     path("about/<int:pk>/update", AboutUpdate.as_view(), name="update_about"),
     path("post/ordinance/", OrdinanceCreate.as_view(), name="create_ordinance"),
+    path(
+        "post/ordinance/<int:pk>/update",
+        OrdinanceUpdate.as_view(),
+        name="update_ordinance",
+    ),
+    path(
+        "ordinance/<int:pk>/delete/", OrdinanceDelete.as_view(), name="delete_ordinance"
+    ),
     path("logout", logout_view, name="logout"),
 ]

@@ -42,6 +42,14 @@
         {% else %}
 
         {% endif %}
+
+         {% if user.is_superuser %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'create_ordinance' %}">New Ordinance</a>
+        </li>
+        {% else %}
+
+        {% endif %}
         <!-- show sign out only if user is authenticated -->
         {% if user.is_authenticated %}
         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Sign Out</a></li>

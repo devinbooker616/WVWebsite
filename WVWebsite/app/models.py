@@ -32,3 +32,9 @@ class WhiteListedEmail(models.Model):
 class Ordinance(models.Model):
     link = models.URLField()
     title = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("Home")

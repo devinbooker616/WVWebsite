@@ -12,8 +12,8 @@
       <label class="alert alert-danger">{{ form.title.errors }}</label>
       {% endif %}
       <!-- Form field - title -->
-      <textarea placeholder="Title" class="form-control m-5" name="title"
-     >   {{ form.title.value|default:"" }}</textarea>
+      <input placeholder="Title" class="form-control m-5" name="title" type="text"
+    value="{{ form.title.value|default:"" }}">   
     </div>
 
     <div class="form-group p-2">
@@ -23,8 +23,8 @@
       <label class="alert alert-danger">{{ form.body.errors }}</label>
       {% endif %}
       <!-- Form fields - body -->
-      <textarea placeholder="Body" class="form-control m-5" name="body">
-            {{ form.link.value|default:"" }}</textarea>
+      <input placeholder="Link" class="form-control m-5" name="link" type="url"
+            value="{{ form.link.value|default:"" }}">
     </div>
 
     <div class="form-group">

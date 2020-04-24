@@ -18,6 +18,8 @@
 
             </div>
         </div>
+       
+
         <div class="col-md-3">
             <div class="p-2">
                 <ul>
@@ -45,6 +47,20 @@
     </div>
 </div>
 
+<table class="table table-striped border">
+    <tr class="table-secondary">
+        <th>Title</th>
+        <th>Link</th>
+    </tr>
+    {% for ordinance in ordinances  %}
+    <tr> 
+        <td>{{ ordinance.title }}</td>
+        <td><a href={{ordinance.link}}>{{ordinance.link|safe}}<a/></td>
+        <td> <a href="{% url 'delete_ordinance' ordinance.pk %}"><button class="btn btn-danger btn-sm">Delete</button></td>
+        <td> <a href="{% url 'update_ordinance' ordinance.pk %}" class="col-md-2 pull-right"><button class="btn btn-primary btn-sm">Update</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
 
 <div class="posts p-4">
     <h3>Community Updates</h3>
