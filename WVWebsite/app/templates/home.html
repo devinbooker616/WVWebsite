@@ -23,9 +23,6 @@
         <div class="col-md-3">
             <div class="p-2">
                 <ul>
-                    <li><a href="https://www.facebook.com/pages/Water-Valley-City-Hall/105772119798635"
-                            target="_blank">City
-                            Facebook Page</a></li>
                     <li><a href="https://www.watervalleychamber.com/" target="_blank">Chamber of Commerce</a></li>
                 </ul>
             </div>
@@ -47,11 +44,25 @@
     </div>
 </div>
 
-<table class="table table-striped border">
+ {% if user.is_superuser %}
+<table id="tabla" class="table table-striped border">
+    <thead>
     <tr class="table-secondary">
-        <th>Title</th>
-        <th>Link</th>
+        <th>Title</td>
+        <th>Link</td>
+        <th>Update</td>
+        <th>Delete</td>
     </tr>
+    </thead>
+     <tfoot>
+                <tr>
+                    <th class="text-center">Title</td>
+                    <th class="text-center">Link</td>
+                     <th class="text-center">Update</td>
+                    <th class="text-center">Delete</td>
+                </tr>
+            </tfoot>
+    <tbody>
     {% for ordinance in ordinances  %}
     <tr> 
         <td>{{ ordinance.title }}</td>
@@ -59,8 +70,36 @@
         <td> <a href="{% url 'delete_ordinance' ordinance.pk %}"><button class="btn btn-danger btn-sm">Delete</button></td>
         <td> <a href="{% url 'update_ordinance' ordinance.pk %}" class="col-md-2 pull-right"><button class="btn btn-primary btn-sm">Update</button></a></td>
     </tr>
+    
     {% endfor %}
+    </tbody>
 </table>
+
+{% else %}
+<table id="tabla" class="table table-striped border">
+    <thead>
+    <tr class="table-secondary">
+        <th>Title</td>
+        <th>Link</td>
+    </tr>
+    </thead>
+     <tfoot>
+                <tr>
+                    <th class="text-center">Title</td>
+                    <th class="text-center">Link</td>
+                </tr>
+            </tfoot>
+    <tbody>
+    {% for ordinance in ordinances  %}
+    <tr> 
+        <td>{{ ordinance.title }}</td>
+        <td><a href={{ordinance.link}}>{{ordinance.link|safe}}<a/></td>
+    </tr>
+    
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
 
 <div class="posts p-4">
     <h3>Community Updates</h3>
@@ -122,6 +161,27 @@
     }
 
     $('.text-change').click(changeText);
+
+
+    $(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    // DataTable
+    var table = $('#tabla').DataTable();
+ 
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+ 
+            if ( that.search() !== this.value) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+} );
 </script>
 
 
