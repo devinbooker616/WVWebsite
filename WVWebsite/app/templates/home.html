@@ -33,69 +33,12 @@
             </div>
             <div class="p-2">
                 <ul>
-                    <li><a href="https://www.watervalleychamber.com/" target="_blank">Water Valley Chamber of Commerce Page</a></li>
+                    <li><a href="https://www.watervalleychamber.com/" target="_blank">Water Valley Chamber of Commerce</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
- {% if user.is_superuser %}
-<table id="tabla" class="table table-striped border">
-    <thead>
-    <tr class="table-secondary">
-        <th>Title</td>
-        <th>Link</td>
-        <th>Update</td>
-        <th>Delete</td>
-    </tr>
-    </thead>
-     <tfoot>
-                <tr>
-                    <th class="text-center">Title</td>
-                    <th class="text-center">Link</td>
-                     <th class="text-center">Update</td>
-                    <th class="text-center">Delete</td>
-                </tr>
-            </tfoot>
-    <tbody>
-    {% for ordinance in ordinances  %}
-    <tr> 
-        <td>{{ ordinance.title }}</td>
-        <td><a href={{ordinance.link}}>{{ordinance.link|safe}}<a/></td>
-        <td> <a href="{% url 'delete_ordinance' ordinance.pk %}"><button class="btn btn-danger btn-sm">Delete</button></td>
-        <td> <a href="{% url 'update_ordinance' ordinance.pk %}" class="col-md-2 pull-right"><button class="btn btn-primary btn-sm">Update</button></a></td>
-    </tr>
-    
-    {% endfor %}
-    </tbody>
-</table>
-
-{% else %}
-<table id="tabla" class="table table-striped border">
-    <thead>
-    <tr class="table-secondary">
-        <th>Title</td>
-        <th>Link</td>
-    </tr>
-    </thead>
-     <tfoot>
-                <tr>
-                    <th class="text-center">Title</td>
-                    <th class="text-center">Link</td>
-                </tr>
-            </tfoot>
-    <tbody>
-    {% for ordinance in ordinances  %}
-    <tr> 
-        <td>{{ ordinance.title }}</td>
-        <td><a href={{ordinance.link}}>{{ordinance.link|safe}}<a/></td>
-    </tr>
-    
-    {% endfor %}
-    </tbody>
-</table>
-{% endif %}
 
 <div class="posts p-4">
     <h3>Community Updates</h3>
@@ -127,6 +70,66 @@
         </div>
     </div>
     {% endfor %}
+</div>
+
+<div id="dataTable" class="p-4">
+    <h3>City Ordinances</h3>
+ {% if user.is_superuser %}
+ <table id="tabla" class="table table-striped border">
+     <thead>
+     <tr class="table-secondary">
+         <th>Title</td>
+         <th>Link</td>
+         <th>Update</td>
+         <th>Delete</td>
+     </tr>
+     </thead>
+      <tfoot>
+                 <tr>
+                     <th class="text-center">Title</td>
+                     <th class="text-center">Link</td>
+                      <th class="text-center">Update</td>
+                     <th class="text-center">Delete</td>
+                 </tr>
+             </tfoot>
+     <tbody>
+     {% for ordinance in ordinances  %}
+     <tr> 
+         <td>{{ ordinance.title }}</td>
+         <td><a href={{ordinance.link}}>{{ordinance.link|safe}}<a/></td>
+         <td> <a href="{% url 'delete_ordinance' ordinance.pk %}"><button class="btn btn-danger btn-sm">Delete</button></td>
+         <td> <a href="{% url 'update_ordinance' ordinance.pk %}" class="col-md-2 pull-right"><button class="btn btn-primary btn-sm">Update</button></a></td>
+     </tr>
+     
+     {% endfor %}
+     </tbody>
+ </table>
+ 
+ {% else %}
+ <table id="tabla" class="table table-striped border">
+     <thead>
+     <tr class="table-secondary">
+         <th>Title</td>
+         <th>Link</td>
+     </tr>
+     </thead>
+      <tfoot>
+                 <tr>
+                     <th class="text-center">Title</td>
+                     <th class="text-center">Link</td>
+                 </tr>
+             </tfoot>
+     <tbody>
+     {% for ordinance in ordinances  %}
+     <tr> 
+         <td>{{ ordinance.title }}</td>
+         <td><a href={{ordinance.link}}>{{ordinance.link|safe}}<a/></td>
+     </tr>
+     
+     {% endfor %}
+     </tbody>
+ </table>
+ {% endif %}
 </div>
 
 <script>
